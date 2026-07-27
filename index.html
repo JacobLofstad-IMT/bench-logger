@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bench Logger</title>
+  <link rel="stylesheet" href="vendor/uplot/uPlot.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Bench Logger</h1>
+  </header>
+
+  <main>
+    <section id="panel-connect" class="panel">
+      <h2>1. Serial connection</h2>
+      <button id="connect-btn" type="button">Connect device</button>
+      <button id="disconnect-btn" type="button" disabled>Disconnect</button>
+      <span id="connection-status" class="status-pill status-unknown">Not connected</span>
+    </section>
+
+    <section id="panel-folder" class="panel">
+      <h2>2. Output folder</h2>
+      <button id="folder-btn" type="button">Choose folder</button>
+      <button id="folder-reconnect-btn" type="button" hidden>Reconnect folder</button>
+      <span id="folder-status" class="status-pill status-unknown">No folder chosen</span>
+    </section>
+
+    <section id="panel-meta" class="panel">
+      <h2>3. Run info</h2>
+      <label>
+        Experiment number
+        <input id="exp-num" type="number" min="0" step="1" inputmode="numeric" />
+      </label>
+      <label>
+        Notes
+        <textarea id="notes" rows="3"></textarea>
+      </label>
+    </section>
+
+    <section id="panel-run" class="panel">
+      <h2>4. Run</h2>
+      <button id="start-stop-btn" type="button" class="big-button" disabled>Start run</button>
+      <div id="start-missing" class="hint"></div>
+      <div id="start-error" class="error" hidden></div>
+    </section>
+
+    <section id="panel-status" class="panel">
+      <h2>5. Live status</h2>
+      <dl class="status-grid">
+        <dt>Samples logged</dt><dd id="sample-count">0</dd>
+        <dt>Elapsed</dt><dd id="elapsed">00:00:00</dd>
+        <dt>Temp</dt><dd id="cur-temp">—</dd>
+        <dt>Duty</dt><dd id="cur-duty">—</dd>
+        <dt>Pressure</dt><dd id="cur-pressure">—</dd>
+        <dt>File</dt><dd id="cur-filename">—</dd>
+      </dl>
+    </section>
+
+    <section id="panel-charts" class="panel">
+      <h2>6. Charts</h2>
+      <div class="chart-controls">
+        <label for="window-select">Time window</label>
+        <select id="window-select">
+          <option value="10">10 s</option>
+          <option value="30">30 s</option>
+          <option value="60" selected>60 s</option>
+          <option value="120">2 min</option>
+          <option value="300">5 min</option>
+          <option value="custom">Custom…</option>
+          <option value="full">Full run</option>
+        </select>
+        <input id="window-custom" class="window-custom" type="number" min="1" step="1"
+               placeholder="sec" hidden />
+      </div>
+      <div class="chart-container"><div id="chart-temp"></div></div>
+      <div class="chart-container"><div id="chart-pressure"></div></div>
+      <div class="chart-container"><div id="chart-duty"></div></div>
+    </section>
+
+    <section id="panel-console" class="panel">
+      <h2>7. Console tail</h2>
+      <pre id="console-tail"></pre>
+    </section>
+
+    <footer id="app-build" class="app-build"></footer>
+  </main>
+
+  <script src="vendor/uplot/uPlot.iife.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

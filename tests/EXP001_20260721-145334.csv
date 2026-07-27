@@ -1,0 +1,7 @@
+# experiment: 001
+# started_utc: 2026-07-21T19:53:34Z
+# started_local: 2026-07-21 14:53:34 -0500
+# build: 2026-07-17a
+# notes: testing testing
+# ---
+pc_time_iso,dev_ticks_ms,temp_c,duty_pct,pressure_kpa
